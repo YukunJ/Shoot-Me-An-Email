@@ -4,8 +4,6 @@
 import os
 import smtplib, ssl
 import logging
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 HOST_ADDRESS_KEY = "HOST_ADDR"
 HOST_PASSWORD_KEY = "HOST_PWD"
@@ -34,9 +32,23 @@ class Emailer:
     or False if at least one email fails for retry times
     """
     def broadcast_email(self, email: str) -> bool:
+        return self.send_helper(list(self.subscribers), email)
+
+
+    """
+    Send an email to an individual address separately,
+    the rest is same as `broadcast_email`
+    """
+    def individual_email(self, dest: str, email: str) -> bool:
+        return self.send_helper([dest], email)
+
+    """
+    Send an email to a list of destinations, used as a helper
+    """
+    def send_helper(self, targets: list[str], email: str) -> bool:
         with smtplib.SMTP_SSL(self.server, self.port, context=self.context) as server:
             server.login(self.host_addr, self.host_pwd)
-            to_send = list(self.subscribers)
+            to_send = targets
             for _ in range(self.retry):
                 failures = server.sendmail(self.host_addr, to_send, email)
                 if (not failures):
@@ -47,3 +59,4 @@ class Emailer:
                         f"Failure to send email to {email} for SMTP error code {tuple[0]} and reason {tuple[1]}")
                 to_send = list(failures.keys())
             return False
+
