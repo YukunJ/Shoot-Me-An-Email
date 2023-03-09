@@ -1,4 +1,11 @@
-# Find-Me-Home
+<img src="img/lease.png" alt="Logo" height="200">
+
+-----------------
+
+## Find-Me-Home
+
+<a href="https://github.com/YukunJ/Turtle"><img src="https://img.shields.io/badge/Language-Python-green.svg"/></a>
+
 This is a small Python toy web crawler to help me find available apartment-lease listings in Jersey City.
 
 ### Story Background
