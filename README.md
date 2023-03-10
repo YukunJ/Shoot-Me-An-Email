@@ -6,7 +6,7 @@
 
 ## Shoot Me An Email
 
-This is a small Python toy email notifier using **Gmail** and **SMTP** (Simple Mail Transfer Protocol). This is done in 30 minutes and not intended to be used for serious purposes, though it works just fine.
+This is a small Python toy email notifier using **SMTP** (Simple Mail Transfer Protocol), compatible with multiple email servers including **gmail**, **qq**, **126**, etc. This is done in 30 minutes and not intended to be used for serious purposes, though it works just fine.
 
 ### Story Background
 
@@ -49,6 +49,8 @@ if __name__ == "__main__":
 ```
 
 The full script is only **40** lines of simple code and can be found [here](src/emailer.py) for reference.
+
+I hope you like it. Let's try it out and shoot your friend an email 📧 by Python!
 
 
 
