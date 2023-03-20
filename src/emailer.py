@@ -4,6 +4,7 @@
 import os
 import smtplib, ssl
 import logging
+from typing import List
 
 HOST_ADDRESS_KEY = "HOST_ADDR"
 HOST_PASSWORD_KEY = "HOST_PWD"
@@ -45,7 +46,7 @@ class Emailer:
     """
     Send an email to a list of destinations, used as a helper
     """
-    def send_helper(self, targets: list[str], email: str) -> bool:
+    def send_helper(self, targets: List[str], email: str) -> bool:
         with smtplib.SMTP_SSL(self.server, self.port, context=self.context) as server:
             server.login(self.host_addr, self.host_pwd)
             to_send = targets
